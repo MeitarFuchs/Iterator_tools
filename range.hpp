@@ -1,23 +1,26 @@
 #pragma once
 namespace itertools {
+
     class range {
         int start;
         int finish;
+
     public:
+
         range(int a, int b) : start(a), finish(b) {}
 
         class iterator {
             int current;
+
         public:
-            iterator(int current_to_be = 0) : current(current_to_be) {}
 
+            iterator(int curr=0) : current(curr) {}
 
-            iterator &operator++() {
+            iterator& operator++() {//++i
                 current = current + 1;
                 return *this;
             }
-
-             iterator operator++(int) {
+             iterator operator++(int) {//i++
                 iterator temp = *this;
                 current = current + 1;
                 return temp;
@@ -26,24 +29,19 @@ namespace itertools {
             bool operator==(const iterator &it) const {
                 return current == it.current;
             }
-
             bool operator!=(const iterator &it) const {
                 return current != it.current;
             }
-
-            int operator*(){
+            int operator*(){//get the value
                 return current;
             }
-
         };
 
-        iterator begin() const{
+        iterator begin() const{ //return iterator
             return iterator(start);
         }
-
-        iterator end() const {
+        iterator end() const { //return iterator
             return iterator(finish);
         }
-
     };
 }
