@@ -4,8 +4,8 @@
 #pragma once
 #include <iostream>
 
-
 namespace itertools{
+
     template <class T1 , class T2>
     class compress{
         const T1& container1;
@@ -14,11 +14,12 @@ namespace itertools{
         compress(const T1& c1 , const T2& c2) : container1(c1) , container2(c2){}
 
         class iterator{
+
             decltype(container1.begin()) iter1;
             decltype(container2.begin()) iter2;
             const compress& comp;
+            
         public:
-
             iterator(decltype(container1.begin()) it1 , decltype(container2.begin()) it2 , const compress& c)
                     : iter1(it1) ,comp(c){
                 if(iter2!=c.container2.end()) iter2=it2;
@@ -27,7 +28,6 @@ namespace itertools{
                     iter2++;
                 }
             }
-
             iterator& operator++(){
                 ++iter1;
                 ++iter2;
@@ -37,14 +37,12 @@ namespace itertools{
                 }
                 return *this;
             }
-
             const iterator operator++(int){
                 iterator temp = *this;
                 ++iter1;
                 ++iter2;
                 return temp;
             }
-
             bool operator==(const iterator& it) const{
                 return iter1==it.iter1;
             }
@@ -52,17 +50,13 @@ namespace itertools{
             bool operator!=(const iterator& it) const{
                 return iter1!=it.iter1;
             }
-
-            auto operator*(){
+            auto operator*(){ // auto !!!
                 return *iter1;
             }
-
         };
-
         iterator begin() const{
             return iterator(container1.begin(),container2.begin(),*this);
         }
-
         iterator end() const {
             return iterator(container1.end(),container2.end(),*this);
         };
