@@ -1,6 +1,3 @@
-//
-// Created by yirat on 15/06/2020.
-//
 
 #include "accumulate.hpp"
 #include "range.hpp"
